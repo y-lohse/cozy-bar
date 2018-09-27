@@ -1,3 +1,4 @@
+import { connect, createProvider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { persistStore, persistCombineReducers } from 'redux-persist'
@@ -10,9 +11,11 @@ const config = {
   whitelist: ['locale']
 }
 
+const STORE_KEY = 'cozybar-store'
+
 const reducer = persistCombineReducers(config, { ...reducers })
 
-const createReduxStore = () => {
+export const createReduxStore = () => {
   let store = createStore(
     reducer,
     applyMiddleware(thunkMiddleware)
@@ -22,4 +25,15 @@ const createReduxStore = () => {
   return store
 }
 
-export default createReduxStore
+export const ReduxProvider = createProvider(STORE_KEY)
+
+export const connectCustomStore = (mapStateToProps, mapDispatchToProps, mergeProps, options = {}) => {
+  options.storeKey = STORE_KEY
+
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+    options
+  )
+}

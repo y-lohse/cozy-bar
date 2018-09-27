@@ -18,8 +18,7 @@ import {
 // For now we have two stores, the goal is to transfer everythin
 // to the redux store
 import BarStore, { Provider as BarProvider } from './lib/BarStore'
-import { connect, Provider as ReduxProvider } from 'react-redux'
-import createReduxStore from 'lib/store'
+import { createReduxStore, connectCustomStore, ReduxProvider } from 'lib/store'
 
 import Bar from './components/Bar'
 import api from 'lib/api'
@@ -73,7 +72,7 @@ const injectBarInDOM = (data) => {
 
   // we connect the I18n component to the store to listen
   // locale change from the api setLocale()
-  const EnhancedI18n = connect(state => ({
+  const EnhancedI18n = connectCustomStore(state => ({
     lang: getLocale(state)
   }))(I18n)
 

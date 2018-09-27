@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connectCustomStore } from 'lib/store'
 
 import { translate } from 'cozy-ui/react/I18n'
 import withBreakpoints from 'cozy-ui/react/helpers/withBreakpoints'
@@ -73,4 +73,4 @@ const mapDispatchToProps = dispatch => ({
   fetchApps: () => dispatch(fetchApps())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(withBreakpoints()(AppsContent)))
+export default connectCustomStore(mapStateToProps, mapDispatchToProps)(translate()(withBreakpoints()(AppsContent)))

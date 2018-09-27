@@ -3,7 +3,7 @@
 
 import 'core-js/modules/es6.object.assign'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connectCustomStore } from 'lib/store'
 
 import { translate } from 'cozy-ui/react/I18n'
 import { shouldEnableTracking, getTracker, configureTracker } from 'cozy-ui/react/helpers/tracker'
@@ -167,4 +167,4 @@ const mapStateToProps = state => ({
   currentApp: getCurrentApp(state)
 })
 
-export default translate()(connect(mapStateToProps)(Bar))
+export default translate()(connectCustomStore(mapStateToProps)(Bar))

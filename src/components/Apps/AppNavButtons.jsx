@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connectCustomStore } from 'lib/store'
 
 import { getHomeApp } from 'lib/reducers'
 
@@ -45,4 +45,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({})
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AppNavButton))
+export default connectCustomStore(mapStateToProps, mapDispatchToProps)(translate()(AppNavButton))
